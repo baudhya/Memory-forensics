@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    build: .
+    image: my-postgres
+    container_name: my_postgres_container
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/gandalf/Desktop/Ubuntu-disk/Ubuntu-Disk:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
