@@ -1,3 +1,4 @@
 gem5/*
 .py-env/*
 script/m5out/*
+script/data.log
